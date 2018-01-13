@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>我的日记</title>
+    <meta charset="utf-8">
+</head>
+<script src="js/template-web.js"></script>
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<style>
+    body{margin: 0;padding: 0}   
+    a{color:#9a9da0;text-decoration:none;}
+    #result_div_leftdaohang{vertical-align: top;;display: inline-block;width: 180px;position: fixed;1border: 1px solid red;height: 800px;}
+    #result_div_leftdaohang_left{vertical-align: top;;display:inline-block;width:142px;1display:none}
+    #result_div_leftdaohang_right{vertical-align: top;display:inline-block;width:30px;}
+    #result_div_rightjieguo{display: inline-block;margin-left: 182px;width: 900px;background: #fffab6;} 
+    #result_div_rightjieguo .divcode{margin: 10px;border: 1px #e7e7e7 solid}
+    p{font-size: 16px;margin: 0;padding: 0;}
+    #result_div_leftdaohang a{display:inline-block;width:94px;height:32px;line-height:32px;padding:0 6px;color:black;}
+    #result_div_leftdaohang a:hover{color:#0099ff;}
+    #btnexcel{background:#f5764b;border-radius: 5px;border:1px solid #f5764b;margin-right:10px;}
+    span{margin: 0;height: 40px;padding-left: 0;line-height: 40px;color: #0099ff;display: inline-block;}
+    .p2{padding:0 14px;background: #aaeef7;margin-top: 5px;}
+    span{cursor: default;}
+    .result_div_datadetail{margin-left: 8px;margin-right: 8px; border:1px solid #e7e7e7;display: none;margin-top: 10px;}
+    table{border-collapse: collapse;border: 1px solid black;margin-left: 33px;display: table;font-size: 14px;table-layout: fixed;word-break: break-all;min-width: 96%;}
+    th,td{border: 1px solid #e7e7e7;padding-left: 6px;}
+    th{height: 26px;}
+    tr:nth-child(even){background: #f1f3f2}
+    td:hover{color:#0099ff}
+    td{cursor: default;}
+    .divbigtab{overflow: auto;min-width: 700px;max-height: 900px;}
+    input,#content{margin-left: 10px;}
+</style>
+<script>
+    window.onload = function(){
+
+        var wzzresult_div_leftdaohang = document.getElementById("result_div_leftdaohang");
+        var wzzresult_div_leftdaohang_left = document.getElementById("result_div_leftdaohang_left");
+        var wzzresult_div_leftdaohang_right = document.getElementById("result_div_leftdaohang_right");
+        var wzzresult_span_hiden = document.getElementById("result_span_hiden");
+        var wzzresult_div_rightjieguo = document.getElementById("result_div_rightjieguo");
+        wzzresult_div_leftdaohang_right.onclick = function(){
+            if(this.index){
+                wzzresult_div_leftdaohang_left.style.display = "inline-block";
+                wzzresult_span_hiden.innerHTML = "<strong><<</strong>";
+                wzzresult_div_leftdaohang.style.width = "180px";
+                wzzresult_div_rightjieguo.style.marginLeft = "182px";
+                this.index = 0;
+            }
+            else
+            {
+                wzzresult_div_leftdaohang_left.style.display = "none";
+                wzzresult_span_hiden.innerHTML = "<strong>>></strong>";
+                wzzresult_div_leftdaohang.style.width = "40px";
+                wzzresult_div_rightjieguo.style.marginLeft = "42px";
+                this.index = 1;
+            }           
+        }
+
+    }
+</script>
+<script type="text/javascript">
+//导出EXCEL
+var tableToExcel = (function () {
+    var uri = 'data:application/vnd.ms-excel;base64,'
+    , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><meta charset="UTF-8"><body><table>{table}</table></body></html>'
+    , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
+    , format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
+    return function (table, name, filename) {
+        if (!table.nodeType) table = document.getElementById(table);
+        
+        var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML }
+        
+        document.getElementById("dlink").href = uri + base64(format(template, ctx));
+        document.getElementById("dlink").download = filename;
+        document.getElementById("dlink").click();       
+    }
+})()
+</script>
+<body>
+
+<div id="result_div_leftdaohang">
+    <div id="result_div_leftdaohang_left">
+    <a href="#arttemplate">    
+    <p>arttemp</p></a>
+    <a href="#freemarker">
+    <p>freemarker</p></a>
+    <a href="#toexcel">
+    <p>toexcel</p></a> 
+    </div>
+    <div id="result_div_leftdaohang_right">
+    <span id="result_span_hiden"><strong><<</strong></span>
+    </div>
+</div>
+<div id="result_div_rightjieguo">
+        <span style="float:right;display: none;">
+        <a href="" id="dlink"  style="display:none;">下载xls</a>
+        <input id="btnexcel" type="button" value="导出EXCEL" onclick="tableToExcel(${(ite[0])!}, 'name', '${(it)!}.xls')" />
+    </span>
+<p class = "p2">
+        <span id="arttemplate"><strong>arttemplate</strong></span>            
+</p>
+<div class="div">
+    <div class="divcode">
+    <xmp>
+    <div id="content"></div>
+    <script id="test" type="text/html">    
+        <%for( i = 0; i < conten.length; i++) {%>
+        <h1>姓名：<%=conten[i].name%></h1>
+        <p> 学号：<%=conten[i].numb%></p>
+        <%}%>
+    </script>
+    <script> 
+    var data = { 
+
+        conten :[
+        {
+            name: "小明",
+            numb: "1001",
+         },
+         {
+            name: "小红",
+            numb: "1002",
+         }
+            ]
+     }; 
+    var user = template("test", data);        
+    document.getElementById("content").innerHTML = user; 
+    </script>
+    </xmp>
+    </div>
+    <input type="button" name="btn" value="点我运行" id="rentemplate">
+    <div id="content"></div>
+    <script id="test" type="text/html">    
+        <%for( i = 0; i < leng; i++) {%>
+        <h1>姓名：<%=conten[i].name%></h1>
+        <p> 学号：<%=conten[i].numb%></p>
+        <%}%>
+    </script>
+    <script> 
+    var data = { 
+        leng:1,
+        conten :[
+        {
+             name: "小明",
+             numb: "1001",
+         },
+         {
+             name: "小红",
+             numb: "1002",
+         }
+            ]
+     }; 
+     $("#rentemplate").click(function(){
+        data.leng = 2;
+        var user = template("test", data);        
+        document.getElementById("content").innerHTML = user; 
+     })
+     
+    </script>
+</div>
+<p class = "p2">
+        <span id="freemarker"><strong>freemarker</strong></span>         
+</p>
+<div>
+    <p>dgjdjdjkdjkjkds</p>
+</div>
+<p class = "p2">
+        <span id="toexcel"><strong>toexcel</strong></span>       
+</p>
+<div>
+    <p>dgjdjdjkdjkjkds</p>
+</div>
+</div>
+</body>
+</html>
