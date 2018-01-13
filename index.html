@@ -1,11 +1,145 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE HTML>
 <html>
 <head>
-<meta charset="utf-8">
-<title>test</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>冰天雪地</title>
+
+<link href="css/style.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="js/jquery.let_it_snow.js"></script>
+
+
+<style>
+	body{animation:myfirs 6s ease infinite alternate;1animation-iteration-count: 1;}
+	p{margin:5px;;padding:0 5px;}
+	span{style="width:50px;heigth:30px;background:#9C93;"}
+	img{border:0;}
+	ul,li{list-style: none;}
+	#divh{position:absolute;width:95%;}
+	#div1{display:inline-block;position:relative;left:50px;vertical-align:bottom;}
+	#div2{position:relative;display:inline-block;left:60px;vertical-align:bottom;}
+	#div3{position:relative;display:inline-block;left:70px;float:right;}
+	#p1{width:80px;height:30px;text-align:center;line-height:30px;color:#FF3;}
+	#p2{width:200px;line-height:30px;color:#F0F;display:inline-block;text-overflow: ellipsis;overflow:hidden;height:60px;}
+	span{display:inline-block;text-align:center;height:30px;line-height:30px;padding:0 6px;}
+	#div3 span{font-size:18px;height:36px;line-height:36px;padding:0 12px;}
+	#div3 span:hover{animation:myfirst 1s linear infinite alternate;}
+	ul{display: inline-block;position: relative;vertical-align: top}
+	li{display: none;}
+	@keyframes myfirst
+	{
+		from{border-radius:0 0;color:#0FF;background:#C3F}
+		to{border-radius:72% 0;color:yellow;background:#C3F}
+		/*0% {border-radius:0 0;color:#0F0}
+		25% {border-radius:18% 0;}
+		50% {border-radius:36% 0;}
+		75% {border-radius:54% 0;}
+		100% {border-radius:72% 0;}*/
+		}
+	@keyframes myfirs
+		{	
+			/*0%   {border-radius: 0 0;}
+			25%  {border-radius: 20% 0;}
+			50%  {border-radius: 40% 0;}
+			75%  {border-radius: 60% 0;}
+			100% {border-radius: 75% 0;}*/
+			from{
+				background: url(images/x1.jpg);
+				background-size: 100%
+			}
+			to{
+				background: url(images/x2.jpg);
+				background-size: 100%
+			}
+		}
+</style>
+<script type="text/javascript">
+	$(document).ready(function(){
+
+	$("canvas.snow").let_it_snow({
+		windPower: 3,
+		speed: 1,
+		count: 250,
+		size: 0
+	});
+
+	$("canvas.flake").let_it_snow({
+		windPower: -3,
+		speed: 1,
+		count: 20,
+		size: 10,
+		image: "images/white-snowflake.png"
+	});
+//var arrUrl = [ '../images/x1.jpg','../images/x2.jpg','../images/x3.jpg','../images/x4.jpg','../images/x5.jpg' ];
+/*var arrUrl = ['x1.jpg','x2.jpg','x3.jpg','x4.jpg','x5.jpg'];
+var num = 0;
+
+var oBody = document.body;
+setInterval(bg,1000);
+function bg(){
+		num++;
+        num%=arrUrl.length;
+        //oBody.style.background  ='url('+arrUrl[num]+')';	
+		document.body.style.background='url('+arrUrl[num]+')';
+       
+}*/
+$("#div3 ul").mouseover(function(){
+	$(this).children("li").each(function(){
+		$(this).css("display","block");
+	})
+})
+$("#div3 ul").mouseout(function(){
+	$(this).children("li").each(function(){
+		$(this).css("display","none");
+	})
+})
+});
+</script>
 </head>
 <body>
-<h1>hello world</h1>
+
+
+	<canvas width="100%" height="100%" class="snow"></canvas>
+	<canvas width="100%" height="100%" class="flake"></canvas>
+    <div id = "divh">
+    <div id = "div1">
+    	<img src="images/dog160527-01.png"/>
+     
+    </div>
+    <div id="div2">
+    	<p id="p1">冰天雪地</p>
+    	<p id = "p2">我愿用余下的时光来等候你。一千年，一万年。哪怕梨花尽数开，尽数败。我总能等到那一日</p>
+    </div>
+    <div id="div3">
+    	<p>
+    		<ul><span><a href="index.html">主页</a></span>
+    			
+    		</ul>
+        	<ul><span><a href="dateinfo.html" target="_blank">日记</a></span>
+    			
+    		</ul>
+        	<ul><span><a href="photoalbum.html" target="_blank">相册</a></span>
+    			
+    		</ul>
+        </p>
+        <p>
+        	<ul><span>分类</span>
+    			<li><span>1</span></li>
+    			<li><span>2</span></li>
+    		</ul>
+        	<ul><span>小游戏</span>
+    			<li><span><a href="chinesechess.html" target="_blank">象棋</a></span></li>
+    			<li><span><a href="fishing.html" target="_blank">捕鱼</a></span></li>    			
+    			<li><span><a href="hitzk.html" target="_blank">打砖块</a></span></li>
+    		</ul>
+        	<ul><span>帮助</span>
+    			<li><span>1</span></li>
+    			<li><span>2</span></li>
+    		</ul>
+        </p>
+    </div>
+    </div>
 
 </body>
 </html>
