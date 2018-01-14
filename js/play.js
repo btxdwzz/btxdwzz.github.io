@@ -1,5 +1,3 @@
-/*! Ò»Ò¶¹ÂÖÛ | qq:28701884 | »¶Ó­Ö¸½Ì */
-
 var play = play||{};
 
 play.init = function (){
