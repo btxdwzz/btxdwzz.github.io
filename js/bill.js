@@ -1,6 +1,4 @@
 var bill = bill || {};
-
-//初始化
 bill.init = function (){
 	if (com.store){
 		clearInterval(bill.timer);
