@@ -1,7 +1,3 @@
-/**
- * Created by Administrator on 2015/6/27.
- */
-
 (function () {
     window.onload = function() {//页面加载完成后执行
         Game.setup();
